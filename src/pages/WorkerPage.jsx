@@ -1,6 +1,6 @@
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase'
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 function WorkerPage({ tasks }) {
     const navigate = useNavigate()
@@ -16,23 +16,23 @@ function WorkerPage({ tasks }) {
         }
     }
 
-    const groupTasks={
+    const groupedTasks = {
         'one-time': [],
-        'daily': [],
-        'weekly': [],
-        'monthly': []
+        daily: [],
+        weekly: [],
+        monthly: [],
     }
-    tasks.forEach(task => {
-        if(groupTasks[task.type]){
-            groupTasks[task.type].push(task)
+
+    tasks.forEach((task) => {
+        if (groupedTasks[task.type]) {
+            groupedTasks[task.type].push(task)
         }
     })
 
     return (
         <div className="page-container">
             <h1 className="page-title">
-                <span
-                    onClick={() => navigate('/admin')}>
+                <span onClick={() => navigate('/admin')}>
                     Worker Page
                 </span>
             </h1>
@@ -54,30 +54,36 @@ function WorkerPage({ tasks }) {
                                 </h2>
 
                                 <div className="tasks-list">
-                                    {tasks.map((task) => (
+                                    {group.map((task) => (
                                         <div key={task.id} className="task-card">
                                             <label className="worker-task">
                                                 <input
                                                     type="checkbox"
                                                     checked={!!task.completed}
-                                                    onChange={() => handleToggle(task.id, task.completed)}
+                                                    onChange={() =>
+                                                        handleToggle(task.id, task.completed)
+                                                    }
                                                 />
                                                 <div>
+                                                    <span
+                                                        className={`worker-task-text ${
+                                                            task.completed ? 'completed' : ''
+                                                        }`}
+                                                    >
+                                                        {task.title}
+                                                    </span>
 
-                                                <span className={`worker-task-text ${task.completed ? 'completed' : ''}`}>
-                                                  {task.title}
-                                                </span>
-
-                                                    <p className="task-meta">Type: {task.type || 'No type'}</p>
-
+                                                    <p className="task-meta">
+                                                        Type: {task.type || 'No type'}
+                                                    </p>
                                                 </div>
                                             </label>
                                         </div>
-                                     ))}
+                                    ))}
                                 </div>
                             </div>
                         ) : null
-                     )}
+                    )}
                 </div>
             )}
         </div>
