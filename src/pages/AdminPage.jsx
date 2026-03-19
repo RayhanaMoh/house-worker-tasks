@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { collection, addDoc, deleteDoc, doc } from 'firebase/firestore'
 import { db } from '../firebase'
+import {useNavigate} from "react-router-dom";
 
 function AdminPage({ tasks }) {
     const [taskName, setTaskName] = useState('')
     const [taskType, setTaskType] = useState('daily')
+    const navigate = useNavigate()
 
     const handleAddTask = async (e) => {
         e.preventDefault()
@@ -38,7 +40,7 @@ function AdminPage({ tasks }) {
 
     return (
         <div className="page-container">
-            <h1 className="page-title">Admin Page</h1>
+            <h1 className="page-title" onClick={() => navigate('/worker')}>Admin Page</h1>
             <p className="page-subtitle">Add and manage household tasks</p>
 
             <form className="task-form" onSubmit={handleAddTask}>

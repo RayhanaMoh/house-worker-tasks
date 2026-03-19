@@ -1,5 +1,6 @@
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase'
+import {useNavigate} from "react-router-dom";
 
 function WorkerPage({ tasks }) {
     const handleToggle = async (taskId, currentCompletedValue) => {
@@ -13,9 +14,11 @@ function WorkerPage({ tasks }) {
         }
     }
 
+    const navigate = useNavigate()
+
     return (
         <div className="page-container">
-            <h1 className="page-title">Worker Page</h1>
+            <h1 className="page-title" onClick={() => navigate('/admin')}>Worker Page</h1>
             <p className="page-subtitle">Today's Tasks</p>
 
             {tasks.length === 0 ? (
