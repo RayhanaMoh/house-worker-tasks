@@ -2,7 +2,7 @@ import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useNavigate } from 'react-router-dom'
 
-function WorkerPage({ tasks }) {
+function WorkerPage({ tasks = [] }) {
     const navigate = useNavigate()
 
     const handleToggle = async (taskId, currentCompletedValue) => {
@@ -16,18 +16,12 @@ function WorkerPage({ tasks }) {
         }
     }
 
-    const groupedTasks = {
-        'one-time': [],
-        daily: [],
-        weekly: [],
-        monthly: [],
-    }
-
-    tasks.forEach((task) => {
-        if (groupedTasks[task.type]) {
-            groupedTasks[task.type].push(task)
-        }
-    })
+    const sections = [
+        { key: 'one-time', title: 'Today' },
+        { key: 'daily', title: 'Daily' },
+        { key: 'weekly', title: 'Weekly' },
+        { key: 'monthly', title: 'Monthly' },
+    ]
 
     return (
         <div className="page-container">
@@ -42,19 +36,20 @@ function WorkerPage({ tasks }) {
             {tasks.length === 0 ? (
                 <p className="empty-text">No tasks available</p>
             ) : (
-                <div className="tasks-list">
-                    {Object.entries(groupedTasks).map(([type, group]) =>
-                        group.length > 0 ? (
-                            <div key={type}>
-                                <h2 className="section-title">
-                                    {type === 'one-time' && 'Today'}
-                                    {type === 'daily' && 'Daily'}
-                                    {type === 'weekly' && 'Weekly'}
-                                    {type === 'monthly' && 'Monthly'}
-                                </h2>
+                <div>
+                    {sections.map((section) => {
+                        const sectionTasks = tasks.filter(
+                            (task) => task.type === section.key
+                        )
+
+                        if (sectionTasks.length === 0) return null
+
+                        return (
+                            <div key={section.key}>
+                                <h2 className="section-title">{section.title}</h2>
 
                                 <div className="tasks-list">
-                                    {group.map((task) => (
+                                    {sectionTasks.map((task) => (
                                         <div key={task.id} className="task-card">
                                             <label className="worker-task">
                                                 <input
@@ -64,6 +59,7 @@ function WorkerPage({ tasks }) {
                                                         handleToggle(task.id, task.completed)
                                                     }
                                                 />
+
                                                 <div>
                                                     <span
                                                         className={`worker-task-text ${
@@ -82,8 +78,8 @@ function WorkerPage({ tasks }) {
                                     ))}
                                 </div>
                             </div>
-                        ) : null
-                    )}
+                        )
+                    })}
                 </div>
             )}
         </div>
