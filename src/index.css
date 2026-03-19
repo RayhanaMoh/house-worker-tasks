@@ -35,7 +35,7 @@ button, input, select {
   padding: 24px 16px;
 }
 
-.page-title {
+.page-title span {
   margin: 0 0 8px;
   font-size: 32px;
 }
