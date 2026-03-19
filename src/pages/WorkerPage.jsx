@@ -59,8 +59,6 @@ function WorkerPage({ tasks = [] }) {
                                                         handleToggle(task.id, task.completed)
                                                     }
                                                 />
-
-                                                <div>
                                                     <span
                                                         className={`worker-task-text ${
                                                             task.completed ? 'completed' : ''
@@ -68,8 +66,6 @@ function WorkerPage({ tasks = [] }) {
                                                     >
                                                         {task.title}
                                                     </span>
-
-                                                </div>
                                             </label>
                                         </div>
                                     ))}
