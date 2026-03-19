@@ -40,7 +40,7 @@ function WorkerPage({ tasks }) {
                                     onChange={() => handleToggle(task.id, task.completed)}
                                 />
                                 <span className={`worker-task-text ${task.completed ? 'completed' : ''}`}>
-                  {task.title}
+                  {task.title} ({task.type})
                 </span>
                             </label>
                         </div>
