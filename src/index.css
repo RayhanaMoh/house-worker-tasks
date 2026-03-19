@@ -10,18 +10,14 @@
   --color-text-secondary: #6b7280;
 
   --color-border: #e5e7eb;
-  --color-border-strong: #d1d5db;
 
   --color-danger: #ef4444;
   --color-danger-hover: #dc2626;
 
-  --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
 
-  --radius-sm: 12px;
-  --radius-md: 16px;
-  --radius-lg: 20px;
-
+  --radius: 14px;
   --transition: 0.25s ease;
 }
 
@@ -29,254 +25,177 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background:
-          radial-gradient(circle at top left, rgba(59, 91, 204, 0.08), transparent 30%),
-          var(--color-bg);
+  background: var(--color-bg);
   color: var(--color-text);
-  line-height: 1.5;
 }
 
-button,
-input,
-select {
+button, input, select {
   font-family: inherit;
 }
 
-button {
-  transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
-}
-
-input,
-select {
-  transition: border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
-}
-
+/* الصفحة */
 .page-container {
   max-width: 760px;
-  margin: 0 auto;
-  padding: 40px 18px;
+  margin: auto;
+  padding: 32px 16px;
 }
 
 .page-title {
-  margin: 0 0 8px;
-  font-size: 34px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.page-title span {
-  display: inline-block;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .page-subtitle {
-  margin: 0 0 28px;
   color: var(--color-text-secondary);
-  font-size: 15px;
+  margin-bottom: 24px;
 }
 
+/* الفورم */
 .task-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  padding: 20px;
-  border: 1px solid rgba(229, 231, 235, 0.9);
-  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  padding: 18px;
+  border-radius: var(--radius);
   box-shadow: var(--shadow-md);
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
+/* الصف (المهم 🔥) */
 .form-row {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   align-items: center;
 }
 
-.task-input,
-.task-select {
+/* الانبوت */
+.task-input {
+  flex: 2;
   height: 54px;
   padding: 0 16px;
+  border-radius: var(--radius);
   border: 1px solid var(--color-border);
-  border-radius: 14px;
-  outline: none;
   font-size: 15px;
   background: var(--color-surface-soft);
-  color: var(--color-text);
 }
 
-.task-input::placeholder {
-  color: #9ca3af;
+.task-input:focus {
+  border-color: var(--color-primary);
+  outline: none;
 }
 
-.task-input {
-  flex: 1;
-}
-
+/* السلكت */
 .task-select {
-  width: 150px;
-  appearance: none;
+  flex: 1;
+  height: 54px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  padding: 0 12px;
+  background: var(--color-surface-soft);
   cursor: pointer;
 }
 
-.task-input:focus,
 .task-select:focus {
   border-color: var(--color-primary);
-  background: var(--color-surface);
+  outline: none;
 }
 
+/* زر */
 .add-button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
   border: none;
-  background: linear-gradient(135deg, var(--color-primary), #4f6fe0);
+  border-radius: var(--radius);
+  background: var(--color-primary);
   color: white;
-  padding: 14px 18px;
-  border-radius: 14px;
+  font-weight: bold;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 15px;
-  box-shadow: 0 8px 18px rgba(59, 91, 204, 0.22);
+  transition: var(--transition);
 }
 
 .add-button:hover {
-  background: linear-gradient(135deg, var(--color-primary-hover), #3d5fd1);
-  transform: translateY(-1px);
+  background: var(--color-primary-hover);
 }
 
-.add-button:active {
-  transform: translateY(0);
-}
-
-.section-title {
-  margin: 0 0 14px;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.empty-text {
-  color: var(--color-text-secondary);
-  background: var(--color-surface);
-  padding: 18px;
-  border-radius: var(--radius-md);
-  border: 1px dashed var(--color-border-strong);
-  box-shadow: var(--shadow-sm);
-}
-
+/* المهام */
 .tasks-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .task-card {
   background: var(--color-surface);
-  border: 1px solid rgba(229, 231, 235, 0.9);
-  border-radius: var(--radius-md);
-  padding: 18px;
+  padding: 16px;
+  border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-}
-
-.task-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(59, 91, 204, 0.18);
 }
 
 .task-title {
-  margin: 0 0 6px;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
 }
 
 .task-meta {
-  margin: 3px 0;
+  font-size: 13px;
   color: var(--color-text-secondary);
-  font-size: 14px;
 }
 
 .delete-button {
-  border: none;
   background: var(--color-danger);
   color: white;
-  padding: 11px 14px;
-  border-radius: 12px;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
   cursor: pointer;
-  white-space: nowrap;
-  font-weight: 600;
-  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.18);
 }
 
 .delete-button:hover {
   background: var(--color-danger-hover);
-  transform: translateY(-1px);
 }
 
-.delete-button:active {
-  transform: translateY(0);
-}
-
+/* checkbox */
 .worker-task {
   display: flex;
   align-items: center;
-  gap: 12px;
-  width: 100%;
+  gap: 10px;
 }
 
 .worker-task input {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   accent-color: var(--color-primary);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.worker-task-text {
-  font-size: 16px;
-  font-weight: 500;
-  transition: color var(--transition), opacity var(--transition);
 }
 
 .worker-task-text.completed {
   text-decoration: line-through;
   color: var(--color-text-secondary);
-  opacity: 0.75;
 }
 
-/* تحسينات للجوال */
+/* 📱 الجوال */
 @media (max-width: 640px) {
-  .page-container {
-    padding: 24px 14px;
-  }
-
-  .page-title {
-    font-size: 28px;
-  }
-
   .form-row {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row; /* 🔥 أهم تعديل */
   }
 
-  .task-select,
-  .task-input,
-  .add-button {
-    width: 100%;
+  .task-input {
+    flex: 2;
+  }
+
+  .task-select {
+    flex: 1;
   }
 
   .task-card {
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   .delete-button {
