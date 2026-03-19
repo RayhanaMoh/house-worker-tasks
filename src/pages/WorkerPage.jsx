@@ -39,9 +39,15 @@ function WorkerPage({ tasks }) {
                                     checked={!!task.completed}
                                     onChange={() => handleToggle(task.id, task.completed)}
                                 />
+                                <div>
+
                                 <span className={`worker-task-text ${task.completed ? 'completed' : ''}`}>
-                  {task.title} ({task.type})
-                </span>
+                                  {task.title}
+                                </span>
+
+                                    <p className="task-meta">Type: {task.type || 'No type'}</p>
+
+                                </div>
                             </label>
                         </div>
                     ))}
