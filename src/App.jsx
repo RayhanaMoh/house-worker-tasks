@@ -18,9 +18,24 @@ function App() {
                 }))
 
                     .sort((a ,b) => {
+                    // Sort by completion status first, then by creation date
                     if (a.completed !== b.completed) {
                         return a.completed - b.completed
                     }
+
+                    // If both tasks have the same completion status, sort by creation date
+                    const order={
+                        'one-time': 0,
+                        'daily': 1,
+                        'weekly': 2,
+                        'monthly': 3
+                    }
+                    // Sort by type if types are different
+                        if(order[a.type] !== order[b.type]){
+                            return order[a.type] - order[b.type]
+                        }
+
+                        // If both tasks have the same type, sort by creation date
                     return new Date(a.createdAt) - new Date(b.createdAt)
                 })
                 setTasks(tasksData)
