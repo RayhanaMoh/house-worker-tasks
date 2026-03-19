@@ -69,9 +69,6 @@ function WorkerPage({ tasks = [] }) {
                                                         {task.title}
                                                     </span>
 
-                                                    <p className="task-meta">
-                                                        Type: {task.type || 'No type'}
-                                                    </p>
                                                 </div>
                                             </label>
                                         </div>
