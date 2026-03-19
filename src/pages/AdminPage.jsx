@@ -40,7 +40,13 @@ function AdminPage({ tasks }) {
 
     return (
         <div className="page-container">
-            <h1 className="page-title" onClick={() => navigate('/worker')}>Admin Page</h1>
+            <h1 className="page-title">
+            <span
+                onClick={() => navigate('/worker')}
+                >
+                Admin Page
+            </span>
+            </h1>
             <p className="page-subtitle">Add and manage household tasks</p>
 
             <form className="task-form" onSubmit={handleAddTask}>

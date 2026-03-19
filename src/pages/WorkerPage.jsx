@@ -18,7 +18,13 @@ function WorkerPage({ tasks }) {
 
     return (
         <div className="page-container">
-            <h1 className="page-title" onClick={() => navigate('/admin')}>Worker Page</h1>
+            <h1 className="page-title">
+                <span
+                    onClick={() => navigate('/admin')}
+                >
+                    Worker Page
+                </span>
+            </h1>
             <p className="page-subtitle">Today's Tasks</p>
 
             {tasks.length === 0 ? (
